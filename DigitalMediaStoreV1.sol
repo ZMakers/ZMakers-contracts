@@ -2,6 +2,7 @@ pragma solidity ^0.4.25;
 
 import './interfaces/DigitalMediaStoreInterface.sol';
 import './libraries/SafeMath.sol';
+import './DigitalMediaToken.sol';
 
 contract DigitalMediaStoreV1 is DigitalMediaStoreInterface {
     using SafeMath for uint256;
@@ -27,6 +28,7 @@ contract DigitalMediaStoreV1 is DigitalMediaStoreInterface {
     
     mapping (uint256=>DigitalMedia) DigitalMedias; 
     mapping (uint256=>Collection) Collections; 
+    address tokenContract;
 
     function getDigitalMediaStoreVersion() public pure returns (uint) {
         uint _version = 1;
@@ -37,8 +39,10 @@ contract DigitalMediaStoreV1 is DigitalMediaStoreInterface {
         return MediaStoreVersion;
     }
 
-    function registerTokenContractAddress() external{
-        
+    function registerTokenContractAddress() external {
+        require(tokenContract == address(0), "Token Contract has set!");
+        address _tokenContract = DigitalMediaToken(msg.sender);
+        tokenContract = _tokenContract;
     }
 
     /**
@@ -56,6 +60,7 @@ contract DigitalMediaStoreV1 is DigitalMediaStoreInterface {
                 uint32 _totalSupply, 
                 uint256 _collectionId, 
                 string _metadataPath) external returns (uint) {
+        require(msg.sender == tokenContract, "Only token contract can operate!");
         Collection memory collection = Collections[_collectionId];
         require(collection.creator == _creator, 'Incorrect Creator, Fail to Create Digital Media!');
         DigitalMediaId = DigitalMediaId.add(1);
@@ -79,8 +84,8 @@ contract DigitalMediaStoreV1 is DigitalMediaStoreInterface {
     function incrementDigitalMediaPrintIndex(
                 uint256 _digitalMediaId, 
                 uint32 _increment)  external {
+        require(msg.sender == tokenContract, "Only token contract can operate!");
         DigitalMedia storage _digitalMedia = DigitalMedias[_digitalMediaId];
-        require(_digitalMedia.creator == msg.sender, 'Only creator can manipulate!');
         _digitalMedia.printIndex=uint32(uint256(_digitalMedia.printIndex).add(uint256(_increment)));
     }
 
@@ -112,6 +117,7 @@ contract DigitalMediaStoreV1 is DigitalMediaStoreInterface {
      * @return the id of the new collection created
      */
     function createCollection(address _creator, string _metadataPath) external returns (uint) {
+        require(msg.sender == tokenContract, "Only token contract can operate!");
         CollectionId=CollectionId.add(1);
         Collection memory collection = Collection({
             id: CollectionId,
