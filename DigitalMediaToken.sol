@@ -1,8 +1,9 @@
 pragma solidity 0.4.25;
 
-
-
-
+import './DigitalMediaManager.sol';
+import './ERC721Safe.sol';
+import './HelperUtils.sol';
+import './SingleCreatorControl.sol';
 
 /**
  * The DigitalMediaToken contract.  Fully implements the ERC721 contract

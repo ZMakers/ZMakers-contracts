@@ -49,7 +49,7 @@ contract MediaStoreVersionControl is Pausable {
         currentDigitalMediaStore.registerTokenContractAddress();
         currentStartingDigitalMediaId = currentDigitalMediaStore.getStartingDigitalMediaId();
     }
-
+ 
     /**
      * Publicly callable by the owner, but can only be set one time, so don't make 
      * a mistake when setting it.
