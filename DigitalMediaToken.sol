@@ -207,7 +207,7 @@ contract DigitalMediaToken is DigitalMediaManager, ERC721Safe, HelperUtils, Sing
             });
 
             uint256 newDigitalMediaReleaseId = _getNextTokenId();
-            tokenIdToDigitalMediaRelease[newDigitalMediaReleaseId] = _digitalMediaRelease;
+            tokenIdToDigitalMediaRelease[ ] = _digitalMediaRelease;
         
             emit DigitalMediaReleaseCreateEvent(
                 newDigitalMediaReleaseId,
