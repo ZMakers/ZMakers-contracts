@@ -1,0 +1,19 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "inittsc": "node_modules/.bin/tsc --init"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.7.6",
+    "nft.storage": "^3.3.0",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2",
+    "web3": "^1.5.2"
+  }
+}

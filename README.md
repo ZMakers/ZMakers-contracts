@@ -15,7 +15,7 @@ The following procedures are essential and prior to main logics.
 
 
 
-# CreateDigitalMedia
+# CreateDigitalMedia(弃用)
 |参数|类型|备注|
 |:---:|:---:|:---:|
 |_totalSupply|uint32|该艺术品总共可对应多少枚币|
@@ -34,7 +34,7 @@ The following procedures are essential and prior to main logics.
 |metadataPath|string|存储艺术品的ipfs地址|
 
 
-# createDigitalMediaReleases
+# createDigitalMediaReleases(弃用)
 |参数|类型|备注|
 |:---:|:---:|:---:|
 |_digitalMediaId|uint256|艺术品id|
@@ -56,3 +56,18 @@ The following procedures are essential and prior to main logics.
 |digitalMediaId|uint256|艺术品id|
 |printEdition|uint32|已经铸造的token的数量|
 
+# createDigitalMediaAndReleases
+|参数|类型|备注|
+|:---:|:---:|:---:|
+|_totalSupply|uint32|该艺术品总共可对应多少枚币|
+|_collectionId|uint256|该艺术品在哪个集合中|
+|_metadataPath|string|在ipfs上的存储地址|
+|_numReleases|uint32|该艺术品铸造多少枚token，不能超过之前规定的totalSupply|
+
+# createDigitalMediaAndReleasesInNewCollection
+|参数|类型|备注|
+|:---:|:---:|:---:|
+|_totalSupply|uint32|该艺术品总共可对应多少枚币|
+|_digitalMediaMetadataPath|string|艺术品链接|
+|_collectionMetadataPath|string|专辑链接|
+|_numReleases|uint32|该艺术品铸造多少枚token，不能超过之前规定的totalSupply|
